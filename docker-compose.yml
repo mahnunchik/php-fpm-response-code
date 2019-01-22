@@ -1,0 +1,18 @@
+version: '2.4'
+
+services:
+
+  httpd:
+    image: httpd:2.4
+    ports:
+      - 80:80
+    depends_on:
+      - php
+    volumes:
+      - ./html:/var/www/html
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+
+  php:
+    image: php:7-fpm
+    volumes:
+      - ./html:/var/www/html
